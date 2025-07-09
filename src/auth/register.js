@@ -1,11 +1,13 @@
 import inquirer from 'inquirer';
-import { Menu } from '../functions/menu.js';
+import BankFunctions from '../functions/bankFunctions.js';
 
 // REGISTRO
 
 let name
 let password
 export let accounts = []
+
+const services = new BankFunctions()
 
 export function Register() {
     const userName = inquirer.prompt([
@@ -38,7 +40,7 @@ export function Register() {
         const Balance = (Math.random() * (1000 - 100) + 100).toString().slice(0, 6)
         accounts.push({ userName: name, passWord: password, balance: Balance, extract: [] })
 
-        Menu(name, Balance, accounts)
+        services.menu(name, Balance, accounts)
     }
 }
 
